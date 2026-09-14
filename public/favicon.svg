@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
+  <rect width="100" height="100" rx="16" fill="#0B0C0E"/>
+  <rect x="15" y="15" width="32" height="32" stroke="#FF6B00" stroke-width="6" fill="none"/>
+  <path d="M38 23 C28 23 23 28 23 38 C23 48 28 53 38 53" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round" fill="none"/>
+  <rect x="47" y="15" width="38" height="32" fill="#FF6B00"/>
+  <text x="66" y="38" fill="#0B0C0E" font-family="sans-serif" font-weight="900" font-size="20" text-anchor="middle">CR</text>
+  <text x="50" y="78" fill="#FFFFFF" font-family="sans-serif" font-weight="800" font-size="16" text-anchor="middle" letter-spacing="2">PULVERIZADORES</text>
+</svg>
