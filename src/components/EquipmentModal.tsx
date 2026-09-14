@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { X, ArrowUpRight, CheckCircle2, ShieldAlert, Cpu } from 'lucide-react';
+import { X, ArrowUpRight, Cpu } from 'lucide-react';
 import { Equipment } from '../data/equipments';
 
 interface EquipmentModalProps {
@@ -34,71 +34,66 @@ export const EquipmentModal: React.FC<EquipmentModalProps> = ({ equipment, onClo
   const categories = Array.from(new Set(equipment.specs.map((s) => s.category || 'Geral')));
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 lg:p-8">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6">
       {/* Backdrop */}
       <div
-        className="fixed inset-0 bg-black/80 backdrop-blur-md transition-opacity animate-in fade-in"
+        className="fixed inset-0 bg-black/80 transition-opacity"
         onClick={onClose}
       />
 
       {/* Modal Card */}
-      <div className="relative w-full max-w-4xl max-h-[90vh] bg-[#14161B] border border-[#2A2E38] rounded-xl shadow-2xl overflow-hidden flex flex-col z-10 animate-in zoom-in-95 duration-200">
+      <div className="relative w-full max-w-3xl max-h-[85vh] bg-black border border-zinc-800 rounded-lg shadow-2xl overflow-hidden flex flex-col z-10 text-white">
         
         {/* Modal Header */}
-        <div className="flex items-center justify-between px-6 py-4 border-b border-[#2A2E38] bg-[#0B0C0E]/90">
-          <div className="flex items-center gap-3">
-            <span className="bg-[#FF6B00] text-white font-mono text-xs font-extrabold px-2.5 py-1 rounded">
+        <div className="flex items-center justify-between px-4 py-3 border-b border-zinc-800 bg-zinc-900">
+          <div className="flex items-center gap-2">
+            <span className="bg-[#FF6B00] text-white font-mono text-[11px] font-bold px-2 py-0.5 rounded">
               ESPECIFICAÇÕES TÉCNICAS
             </span>
-            <span className="text-sm font-bold text-gray-300 hidden sm:inline">
-              CR AGRO PULVERIZADORES
+            <span className="text-xs font-bold text-zinc-300 hidden sm:inline">
+              {equipment.name}
             </span>
           </div>
 
           <button
             onClick={onClose}
-            className="p-2 rounded bg-[#1C1F26] border border-[#2A2E38] text-gray-400 hover:text-white hover:border-[#FF6B00] transition-colors"
+            className="p-1 rounded bg-zinc-800 text-zinc-400 hover:text-white"
             aria-label="Fechar especificações"
           >
-            <X className="w-5 h-5" />
+            <X className="w-4 h-4" />
           </button>
         </div>
 
         {/* Modal Content Scroll Area */}
-        <div className="overflow-y-auto p-6 space-y-8">
+        <div className="overflow-y-auto p-4 sm:p-6 space-y-6">
           
-          {/* Top Info Banner */}
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-center bg-[#0B0C0E] border border-[#2A2E38] rounded-lg p-5">
-            <div className="md:col-span-5 relative group">
+          {/* Top Info Box */}
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-4 items-center bg-zinc-900 border border-zinc-800 rounded p-3 sm:p-4">
+            <div className="md:col-span-5">
               <img
                 src={equipment.mainImage}
                 alt={equipment.name}
-                className="w-full h-56 object-cover rounded-lg border border-[#2A2E38] bg-[#14161B]"
+                className="w-full h-36 sm:h-48 object-cover rounded border border-zinc-800 bg-black"
               />
-              <div className="absolute top-2 right-2 bg-black/80 backdrop-blur text-xs font-mono text-[#FF6B00] px-2.5 py-1 rounded border border-[#2A2E38]">
-                FOTO REAL CR AGRO
-              </div>
             </div>
 
-            <div className="md:col-span-7 flex flex-col justify-between space-y-4">
-              <div>
-                <span className="text-xs font-mono text-[#FF6B00] uppercase tracking-wider font-extrabold">
-                  {equipment.category}
-                </span>
-                <h2 className="text-2xl sm:text-3xl font-extrabold text-white mt-1">
-                  {equipment.name}
-                </h2>
-                <p className="text-sm text-gray-300 mt-2 leading-relaxed">
-                  {equipment.description}
-                </p>
-              </div>
+            <div className="md:col-span-7 space-y-2">
+              <span className="text-xs font-mono text-[#FF6B00] uppercase font-bold">
+                {equipment.category}
+              </span>
+              <h2 className="text-xl sm:text-2xl font-extrabold text-white">
+                {equipment.name}
+              </h2>
+              <p className="text-xs text-zinc-300 leading-relaxed">
+                {equipment.description}
+              </p>
 
               {/* Highlights badges */}
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-2 border-t border-[#2A2E38]">
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-1.5 pt-2 border-t border-zinc-800">
                 {equipment.highlights.map((h, i) => (
-                  <div key={i} className="bg-[#1C1F26] p-2 rounded border border-[#2A2E38]">
-                    <p className="text-[9px] font-mono text-gray-400 uppercase tracking-wider">{h.label}</p>
-                    <p className="text-xs font-extrabold text-white mt-0.5">{h.value}</p>
+                  <div key={i} className="bg-black p-1.5 rounded border border-zinc-800 text-center">
+                    <p className="text-[8px] font-mono text-zinc-400 uppercase">{h.label}</p>
+                    <p className="text-xs font-bold text-white mt-0.5">{h.value}</p>
                   </div>
                 ))}
               </div>
@@ -106,28 +101,28 @@ export const EquipmentModal: React.FC<EquipmentModalProps> = ({ equipment, onClo
           </div>
 
           {/* Technical Specs Blocks */}
-          <div className="space-y-6">
-            <h3 className="text-lg font-extrabold text-white uppercase tracking-wider flex items-center gap-2 border-l-4 border-[#FF6B00] pl-3">
-              <Cpu className="w-5 h-5 text-[#FF6B00]" /> DADOS TÉCNICOS COMPLETOS
+          <div className="space-y-4">
+            <h3 className="text-sm font-bold text-white uppercase tracking-wider flex items-center gap-1.5 border-l-2 border-[#FF6B00] pl-2">
+              <Cpu className="w-4 h-4 text-[#FF6B00]" /> ESPECIFICAÇÕES DETALHADAS
             </h3>
 
             {categories.map((cat) => {
               const catSpecs = equipment.specs.filter((s) => (s.category || 'Geral') === cat);
               return (
-                <div key={cat} className="space-y-3">
-                  <h4 className="text-xs font-mono uppercase tracking-widest text-[#FF6B00] font-bold">
-                    [ {cat} ]
+                <div key={cat} className="space-y-2">
+                  <h4 className="text-[10px] font-mono uppercase tracking-widest text-[#FF6B00] font-bold">
+                    {cat}
                   </h4>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
                     {catSpecs.map((spec, idx) => (
                       <div
                         key={idx}
-                        className="bg-[#1C1F26] border border-[#2A2E38] hover:border-[#FF6B00]/40 p-3.5 rounded transition-all flex flex-col justify-between"
+                        className="bg-zinc-900 border border-zinc-800 p-2.5 rounded flex flex-col justify-between"
                       >
-                        <span className="text-[11px] font-mono uppercase text-gray-400 tracking-wider">
+                        <span className="text-[10px] font-mono uppercase text-zinc-400">
                           {spec.label}
                         </span>
-                        <span className="text-sm font-extrabold text-white mt-1 font-sans">
+                        <span className="text-xs font-bold text-white mt-0.5">
                           {spec.value}
                         </span>
                       </div>
@@ -138,34 +133,18 @@ export const EquipmentModal: React.FC<EquipmentModalProps> = ({ equipment, onClo
             })}
           </div>
 
-          {/* Machine Photos Showcase inside Modal */}
-          {equipment.secondaryImage && (
-            <div className="bg-[#0B0C0E] border border-[#2A2E38] rounded-lg p-4 space-y-3">
-              <h4 className="text-xs font-mono uppercase tracking-wider text-gray-400 flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-[#FF6B00]" /> VISTA COMPLEMENTAR DO EQUIPAMENTO
-              </h4>
-              <div className="max-w-md mx-auto">
-                <img
-                  src={equipment.secondaryImage}
-                  alt={`${equipment.name} detalhe`}
-                  className="w-full h-60 object-cover rounded border border-[#2A2E38] bg-[#14161B]"
-                />
-              </div>
-            </div>
-          )}
-
         </div>
 
         {/* Modal Footer CTA */}
-        <div className="px-6 py-4 border-t border-[#2A2E38] bg-[#0B0C0E] flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="text-xs text-gray-400 font-mono">
-            Atendimento direto de fábrica em <span className="text-white font-bold">Alpinópolis - MG</span>
-          </div>
+        <div className="px-4 py-3 border-t border-zinc-800 bg-zinc-900 flex flex-col sm:flex-row items-center justify-between gap-3">
+          <span className="text-[10px] font-mono text-zinc-400">
+            Alpinópolis - MG
+          </span>
 
-          <div className="flex items-center gap-3 w-full sm:w-auto">
+          <div className="flex items-center gap-2 w-full sm:w-auto">
             <button
               onClick={onClose}
-              className="px-4 py-2.5 rounded bg-[#1C1F26] border border-[#2A2E38] text-gray-300 hover:text-white text-xs font-bold uppercase transition-colors"
+              className="px-3 py-2 rounded bg-black border border-zinc-800 text-zinc-300 text-xs font-bold uppercase"
             >
               FECHAR
             </button>
@@ -174,10 +153,10 @@ export const EquipmentModal: React.FC<EquipmentModalProps> = ({ equipment, onClo
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 bg-[#FF6B00] hover:bg-[#E05A00] text-white text-xs font-extrabold tracking-wider uppercase px-6 py-3 rounded orange-glow shadow-lg transition-all"
+              className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 bg-[#FF6B00] hover:bg-[#e05e00] text-white text-xs font-bold uppercase px-4 py-2 rounded transition-colors"
             >
               <span>SOLICITAR ORÇAMENTO</span>
-              <ArrowUpRight className="w-4 h-4" />
+              <ArrowUpRight className="w-3.5 h-3.5" />
             </a>
           </div>
         </div>

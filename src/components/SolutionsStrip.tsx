@@ -13,39 +13,37 @@ export const SolutionsStrip: React.FC = () => {
   ];
 
   return (
-    <section className="bg-[#121418] border-y border-[#2A2E38] py-5 overflow-hidden shadow-inner relative z-20">
+    <section className="bg-white border-y border-gray-200 py-4 text-black">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Desktop Layout - Horizontal Line Grid */}
+        {/* Desktop Navigation Strip */}
         <div className="hidden lg:flex items-center justify-between gap-4">
           {items.map((item, index) => {
             const Icon = item.icon;
             return (
               <React.Fragment key={item.name}>
-                <div className="flex items-center gap-2.5 group cursor-default">
-                  <div className="p-1.5 rounded bg-[#1C1F26] border border-[#2A2E38] group-hover:border-[#FF6B00] transition-colors">
-                    <Icon className="w-4 h-4 text-[#FF6B00]" />
-                  </div>
-                  <span className="text-xs font-extrabold tracking-widest text-gray-200 group-hover:text-white transition-colors font-sans uppercase">
+                <div className="flex items-center gap-2">
+                  <Icon className="w-4 h-4 text-[#FF6B00]" />
+                  <span className="text-xs font-extrabold tracking-wider text-black uppercase">
                     {item.name}
                   </span>
                 </div>
                 {index < items.length - 1 && (
-                  <div className="h-4 w-[1px] bg-[#2A2E38]" />
+                  <span className="text-gray-300 font-bold">•</span>
                 )}
               </React.Fragment>
             );
           })}
         </div>
 
-        {/* Mobile & Tablet Layout - Responsive Ticker / Grid */}
-        <div className="lg:hidden flex flex-wrap items-center justify-center gap-x-6 gap-y-3">
+        {/* Mobile / Tablet Responsive Ticker */}
+        <div className="lg:hidden flex flex-wrap items-center justify-center gap-x-4 gap-y-2">
           {items.map((item) => {
             const Icon = item.icon;
             return (
-              <div key={item.name} className="flex items-center gap-2 bg-[#1C1F26] border border-[#2A2E38] px-3 py-1.5 rounded-sm">
+              <div key={item.name} className="flex items-center gap-1.5 bg-gray-100 border border-gray-200 px-2.5 py-1 rounded">
                 <Icon className="w-3.5 h-3.5 text-[#FF6B00]" />
-                <span className="text-[11px] font-bold tracking-wider text-gray-200 uppercase">
+                <span className="text-[10px] font-bold text-gray-900 uppercase">
                   {item.name}
                 </span>
               </div>
